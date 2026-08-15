@@ -1,0 +1,251 @@
+@import "../../../vars.css";
+
+/* ── Hero Section ─────────────────────────────── */
+.container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 8%;
+}
+
+/* Full-bleed background image */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  transform: scale(1.05);
+  animation: slowZoom 12s ease-out forwards;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1.0);  }
+}
+
+/* Dark overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.82) 0%,
+    rgba(10, 10, 10, 0.55) 60%,
+    rgba(10, 10, 10, 0.75) 100%
+  );
+  z-index: 1;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  animation: slideUp 1s ease 0.3s both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--color-primary);
+}
+
+/* Heading */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--color-text);
+  letter-spacing: -1px;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+/* Description */
+.description {
+  font-size: 17px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 520px;
+  font-weight: 300;
+}
+
+/* CTA Row */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.ctaPrimary {
+  padding: 16px 40px;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.ctaPrimary:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 169, 110, 0.3);
+}
+
+.ctaSecondary {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  color: var(--color-primary);
+}
+
+.ctaSecondary::after {
+  content: '→';
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.ctaSecondary:hover::after {
+  transform: translateX(4px);
+}
+
+/* Stats bar */
+.stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  border-top: 1px solid var(--color-border);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.stat {
+  flex: 1;
+  padding: 28px;
+  text-align: center;
+  border-right: 1px solid var(--color-border);
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.statNumber {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1;
+  display: block;
+}
+
+.statLabel {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+  display: block;
+}
+
+/* Scroll indicator */
+.scrollHint {
+  position: absolute;
+  bottom: 110px;
+  right: 8%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-dim);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.1); }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .content {
+    align-items: center;
+    text-align: center;
+  }
+  .description {
+    text-align: center;
+  }
+  .ctaRow {
+    justify-content: center;
+  }
+  .stats {
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1 1 50%;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .scrollHint {
+    display: none;
+  }
+}
