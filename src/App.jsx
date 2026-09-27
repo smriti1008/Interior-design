@@ -6,6 +6,7 @@ import Hero from './components/Navbar/Hero/Hero'
 import About from './components/Navbar/About/About'
 import Contact from './components/Navbar/contactUs/contactUs'
 
+
 import Services from './components/Navbar/services/Services'
 import Collections from './components/Navbar/collection/collection'
 import Myteam from './components/Navbar/ourTeam/team'
